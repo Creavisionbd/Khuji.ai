@@ -5,7 +5,12 @@ from pinecone import Pinecone,ServerlessSpec
 import numpy as np
 
 # Replace with your actual API keys
-OPENAI_API_KEY = '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'
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Load variables from .env file
+
+openai_api_key = os.getenv('OPENAI_API_KEY')
 PINECONE_API_KEY = 'f8dca2e6-17b3-4d2d-bf68-1a09df19b2d4'
 
 # Initialize OpenAI and Pinecone
