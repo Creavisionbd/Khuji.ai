@@ -4,3 +4,4 @@ pinecone
 numpy
 uvicorn
 python-dotenv
+cryptography
