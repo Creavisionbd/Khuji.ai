@@ -3,3 +3,4 @@ openai
 pinecone
 numpy
 uvicorn
+python-dotenv
