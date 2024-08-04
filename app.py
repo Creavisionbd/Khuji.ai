@@ -4,17 +4,24 @@ from openai import OpenAI
 from pinecone import Pinecone,ServerlessSpec
 import numpy as np
 
-# Replace with your actual API keys
-import os
-from dotenv import load_dotenv
+from cryptography.fernet import Fernet
 
-load_dotenv()  # Load variables from .env file
+with open('encryption_key.key', 'rb') as key_file:
+    encryption_key = key_file.read()
 
-openai_api_key = os.getenv('OPENAI_API_KEY')
+cipher_suite = Fernet(encryption_key)
+
+# Load the encrypted API key
+with open('encrypted_api_key.key', 'rb') as encrypted_file:
+    encrypted_api_key = encrypted_file.read()
+
+# Decrypt the API key
+decrypted_api_key = cipher_suite.decrypt(encrypted_api_key).decode()
+
 PINECONE_API_KEY = 'f8dca2e6-17b3-4d2d-bf68-1a09df19b2d4'
 
 # Initialize OpenAI and Pinecone
-client=OpenAI(api_key="sk-proj-Sg7lKYox0UarmpqNaNMST3BlbkFJYjcHMWu6trePI248vWjQ")
+client=OpenAI(api_key=decrypted_api_key)
 pine=Pinecone(api_key=PINECONE_API_KEY, environment='us-west1-gcp')
 # Create and connect to Pinecone index
 index_name_1 = 'text-classification'
