@@ -35,7 +35,7 @@ index_3 = pine.Index(index_name_3)
 
 app = FastAPI()
 def text_generate(question,primer):
-    primer="you are a chatbot who assist about getting job"+primer+"this is the data and you have to answer depending on this data but always try to answer in short"
+    primer="you are a Bangla chatbot who assist about getting job"+primer+"this is the data and you have to answer depending on this data but always try to answer in short"
     response=client.chat.completions.create(
             model="gpt-4o",
             temperature=0,
